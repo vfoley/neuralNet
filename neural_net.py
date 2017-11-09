@@ -2,6 +2,7 @@
 from weatherInput import *
 from classInput import *
 import random
+import math
 # each entry in noramlized array is an array of the input 
 # values to be passed through the array.
 # the last value in each entry is the expected or correct outcome
@@ -26,7 +27,7 @@ def return_weighted_input(node=[],input=[]):
         for j in range(0,len(node)):
             #summation of weights to each node.
             weighted_value += (node[i]*input[j])
-        weighted_input.append(weighted_value)
+        weighted_input.append(1/(1+math.exp(-1*weighted_value)))
     return weighted_input
 # start the process of training 
 # each layer represented by an array holding weights
