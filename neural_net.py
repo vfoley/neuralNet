@@ -18,6 +18,13 @@ def randomize_node_weights(num):
     
     return node
 
+#returns fully populated neural net of n layers by m nodes/layer
+def define_neural_net(n,m):
+    layers = []
+    for i in range(0,n):
+        layers.append(randomize_node_weights(4))
+    return layers
+
 #returns entry passed through node
 def return_weighted_input(node=[],input=[]):
     weighted_value = 0
@@ -36,13 +43,12 @@ def return_weighted_input(node=[],input=[]):
 # store data in Transition array.
 # evaluate the accuracy of the training
 
-layers = []
+layers = define_neural_net(3,4)
 transition_array = []
-layers.append(randomize_node_weights(4))
 
 for line in normalized_weather:
-    for node in layers:
-        transition_array.append(return_weighted_input(node, line))
+    for layer in layers:
+        transition_array.append(return_weighted_input(layer, line))
 
 for line in transition_array:
     print(line)
